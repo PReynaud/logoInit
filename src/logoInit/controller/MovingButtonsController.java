@@ -53,7 +53,8 @@ public class MovingButtonsController implements ActionListener {
             }
         }
         else if (c.equals("Ajouter")){
-            turtles.addTurtle();
+            int color = view.getCurrentColor();
+            turtles.addTurtle(color);
         }
 
         view.getGraphPanel().repaint();

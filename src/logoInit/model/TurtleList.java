@@ -22,9 +22,10 @@ public class TurtleList extends Observable{
         this.turtles.add(o);
     }
 
-    public void addTurtle(){
+    public void addTurtle(int color){
         Turtle tempTurtle = new Turtle();
         tempTurtle.setPosition(500/2, 400/2);
+        tempTurtle.setColor(color);
         this.turtles.add(tempTurtle);
     }
 

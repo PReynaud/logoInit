@@ -97,7 +97,7 @@ public class Turtle{
         arrow.addPoint(p2.x,p2.y);
     }
 
-    protected Color decodeColor(int c) {
+    public Color decodeColor(int c) {
         switch(c) {
             case 0: return(Color.black);
             case 1: return(Color.blue);

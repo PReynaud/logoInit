@@ -4,6 +4,8 @@ import controller.MovingButtonsController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Pierre on 22/04/2015.
@@ -12,13 +14,14 @@ public class ControlPanel extends JPanel {
     public static final Dimension VGAP = new Dimension(1,5);
     public static final Dimension HGAP = new Dimension(5,1);
     private JTextField inputValue;
+    private int currentColor;
 
     private JToolBar toolBar;
 
     public ControlPanel(MovingButtonsController controller){
         this.toolBar = new JToolBar();
 
-        addButton(toolBar,"Effacer","Nouveau dessin","/icons/index.png", controller);
+        addButton(toolBar, "Effacer", "Nouveau dessin", "/icons/index.png", controller);
 
         toolBar.add(Box.createRigidArea(HGAP));
         inputValue = new JTextField("45",5);
@@ -38,6 +41,13 @@ public class ControlPanel extends JPanel {
         toolBar.add(colorLabel);
         JComboBox colorList = new JComboBox(colorStrings);
         toolBar.add(colorList);
+
+        colorList.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cb = (JComboBox) e.getSource();
+                currentColor = cb.getSelectedIndex();
+            }
+        });
     }
 
     //utilitaires pour installer des boutons et des menus
@@ -69,5 +79,9 @@ public class ControlPanel extends JPanel {
 
     public JTextField getInputValue(){
         return inputValue;
+    }
+
+    public int getCurrentColor(){
+        return currentColor;
     }
 }

@@ -19,7 +19,6 @@ public class MainPanel extends JFrame implements Observer {
     private ControlPanel controlPanel;
     private GraphPanel graphPanel;
 
-
     public MainPanel(TurtleList turtles){
         super("Un super logo");
 
@@ -59,5 +58,9 @@ public class MainPanel extends JFrame implements Observer {
 
     public GraphPanel getGraphPanel(){
         return graphPanel;
+    }
+
+    public int getCurrentColor(){
+        return controlPanel.getCurrentColor();
     }
 }
