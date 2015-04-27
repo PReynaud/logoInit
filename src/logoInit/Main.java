@@ -13,8 +13,9 @@ public class Main {
             public void run() {
                 TurtleList turtles = new TurtleList();
 
-                MainPanel mainPanel = new MainPanel(turtles);
-                MovingButtonsController buttonsController = new MovingButtonsController(mainPanel, turtles);
+                MovingButtonsController buttonsController;
+                MainPanel mainPanel = new MainPanel(turtles, buttonsController);
+                buttonsController = new MovingButtonsController(mainPanel, turtles);
 
                 turtles.addObserver(mainPanel);
                 mainPanel.setVisible(true);

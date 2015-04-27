@@ -31,6 +31,7 @@ public class GraphPanel extends JPanel {
     }
 
     private TurtleList tortues; // la liste des tortues enregistrees
+    private Graphics graph;
 
     public GraphPanel(TurtleList turtles, Dimension dimension) {
         super();
@@ -38,6 +39,7 @@ public class GraphPanel extends JPanel {
         this.setBackground(Color.white);
         this.setSize(dimension);
         this.setPreferredSize(dimension);
+        this.drawTurtle(graph, turtles.getCurrentTurtle());
     }
 
     public void addTortue(Turtle o) {
@@ -94,4 +96,20 @@ public class GraphPanel extends JPanel {
         graph.setColor(Color.green);
         graph.fillPolygon(arrow);
     }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Color c = g.getColor();
+
+        Dimension dim = getSize();
+        g.setColor(Color.white);
+        g.fillRect(0,0,dim.width, dim.height);
+        g.setColor(c);
+
+        showTurtles(g);
+    }
+
+
 }

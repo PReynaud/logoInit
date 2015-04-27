@@ -1,5 +1,7 @@
 package view;
 
+import controller.MovingButtonsController;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,19 +15,19 @@ public class ControlPanel extends JPanel {
 
     private JToolBar toolBar;
 
-    public ControlPanel(){
+    public ControlPanel(MovingButtonsController controller){
         this.toolBar = new JToolBar();
 
-        addButton(toolBar,"Effacer","Nouveau dessin","/icons/index.png");
+        addButton(toolBar,"Effacer","Nouveau dessin","/icons/index.png", controller);
 
         toolBar.add(Box.createRigidArea(HGAP));
         inputValue = new JTextField("45",5);
         toolBar.add(inputValue);
-        addButton(toolBar, "Avancer", "Avancer 50", null);
-        addButton(toolBar, "Droite", "Droite 45", null);
-        addButton(toolBar, "Gauche", "Gauche 45", null);
-        addButton(toolBar, "Lever", "Lever Crayon", null);
-        addButton(toolBar, "Baisser", "Baisser Crayon", null);
+        addButton(toolBar, "Avancer", "Avancer 50", null, controller);
+        addButton(toolBar, "Droite", "Droite 45", null, controller);
+        addButton(toolBar, "Gauche", "Gauche 45", null, controller);
+        addButton(toolBar, "Lever", "Lever Crayon", null, controller);
+        addButton(toolBar, "Baisser", "Baisser Crayon", null, controller);
 
         String[] colorStrings = {"noir", "bleu", "cyan","gris fonce","rouge",
                 "vert", "gris clair", "magenta", "orange",
@@ -40,7 +42,7 @@ public class ControlPanel extends JPanel {
     }
 
     //utilitaires pour installer des boutons et des menus
-    public void addButton(JComponent p, String name, String tooltiptext, String imageName) {
+    public void addButton(JComponent p, String name, String tooltiptext, String imageName, MovingButtonsController controller) {
         JButton b;
         if ((imageName == null) || (imageName.equals(""))) {
             b = (JButton)p.add(new JButton(name));
@@ -58,7 +60,8 @@ public class ControlPanel extends JPanel {
 
         b.setToolTipText(tooltiptext);
         b.setBorder(BorderFactory.createRaisedBevelBorder());
-        b.setMargin(new Insets(0,0,0,0));
+        b.setMargin(new Insets(0, 0, 0, 0));
+        b.addActionListener(controller);
     }
 
     public JToolBar getToolbar(){
