@@ -61,12 +61,6 @@ public class GraphPanel extends JPanel {
         if (graph==null)
             return;
 
-        // Dessine les segments
-        for(Iterator it = turtle.getListSegments().iterator();it.hasNext();) {
-            Segment seg = (Segment) it.next();
-            seg.drawSegment(graph);
-        }
-
         //Calcule les 3 coins du triangle a partir de
         // la position de la tortue p
         Point p = new Point(turtle.getX(),turtle.getY());

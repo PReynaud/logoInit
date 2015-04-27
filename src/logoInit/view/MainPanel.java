@@ -17,24 +17,25 @@ public class MainPanel extends JFrame implements Observer {
     private ControlPanel controlPanel;
     private GraphPanel graphPanel;
 
-    public MainPanel(TurtleList turtles, MovingButtonsController controller){
+
+    public MainPanel(TurtleList turtles){
         super("Un super logo");
 
         getContentPane().setLayout(new BorderLayout(10, 10));
-
-        controlPanel = new ControlPanel(controller);
         graphPanel = new GraphPanel(turtles, new Dimension(600,400));
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(controlPanel.getToolbar());
-        getContentPane().add(buttonPanel, "North");
         getContentPane().add(graphPanel, "Center");
-
-        controlPanel.setVisible(true);
         graphPanel.setVisible(true);
+        setVisible(true);
+    }
+
+    public void addButtons(MovingButtonsController controller){
+        JPanel buttonPanel = new JPanel();
+        getContentPane().add(buttonPanel, "North");
+        controlPanel = new ControlPanel(controller);
+        buttonPanel.add(controlPanel.getToolbar());
+        controlPanel.setVisible(true);
 
         pack();
-        setVisible(true);
     }
 
     @Override
