@@ -22,6 +22,12 @@ public class TurtleList extends Observable{
         this.turtles.add(o);
     }
 
+    public void addTurtle(){
+        Turtle tempTurtle = new Turtle();
+        tempTurtle.setPosition(500/2, 400/2);
+        this.turtles.add(tempTurtle);
+    }
+
     public void reset() {
         for (Iterator it = this.turtles.iterator();it.hasNext();) {
             Turtle t = (Turtle) it.next();

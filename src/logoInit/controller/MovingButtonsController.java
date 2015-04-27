@@ -52,10 +52,9 @@ public class MovingButtonsController implements ActionListener {
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
         }
-        else if (c.equals("Lever"))
-            turtles.getCurrentTurtle().leverCrayon();
-        else if (c.equals("Baisser"))
-            turtles.getCurrentTurtle().baisserCrayon();
+        else if (c.equals("Ajouter")){
+            turtles.addTurtle();
+        }
 
         view.getGraphPanel().repaint();
     }

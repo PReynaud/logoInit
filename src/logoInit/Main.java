@@ -15,6 +15,7 @@ public class Main {
 
                 MainPanel mainPanel = new MainPanel(turtles);
                 MovingButtonsController buttonsController = new MovingButtonsController(mainPanel, turtles);
+                //Crée les boutons et les associe au controleur
                 mainPanel.addButtons(buttonsController);
 
                 turtles.addObserver(mainPanel);

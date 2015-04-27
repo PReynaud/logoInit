@@ -26,8 +26,7 @@ public class ControlPanel extends JPanel {
         addButton(toolBar, "Avancer", "Avancer 50", null, controller);
         addButton(toolBar, "Droite", "Droite 45", null, controller);
         addButton(toolBar, "Gauche", "Gauche 45", null, controller);
-        addButton(toolBar, "Lever", "Lever Crayon", null, controller);
-        addButton(toolBar, "Baisser", "Baisser Crayon", null, controller);
+        addButton(toolBar, "Ajouter", "Ajouter tortue", null, controller);
 
         String[] colorStrings = {"noir", "bleu", "cyan","gris fonce","rouge",
                 "vert", "gris clair", "magenta", "orange",
