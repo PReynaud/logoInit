@@ -16,10 +16,6 @@ public class TurtleList extends Observable{
         addTurtle(0);
     }
 
-    public void addTortle(Turtle o) {
-        this.turtles.add(o);
-    }
-
     public void addTurtle(int color){
         Turtle tempTurtle = new Turtle();
         tempTurtle.setPosition(500/2, 400/2);

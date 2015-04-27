@@ -5,7 +5,7 @@ import model.Turtle;
 import java.awt.*;
 
 /**
- * Created by Toromis on 27/04/2015.
+ * Created by Dimitri on 27/04/2015.
  */
 public class ArrowView extends PolygonView {
     @Override
@@ -36,6 +36,7 @@ public class ArrowView extends PolygonView {
                 (int) Math.round(p2.y + r * Math.sin(theta - alpha)));
 
         polygon.addPoint(p2.x, p2.y);
+        graphics.setColor(turtle.decodeColor(turtle.getColor()));
         graphics.fillPolygon(polygon);
         super.drawPolygon(graphics, turtle);
     }
