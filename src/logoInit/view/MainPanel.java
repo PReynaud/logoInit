@@ -22,7 +22,8 @@ public class MainPanel extends JFrame implements Observer {
 
         JPanel buttonPanel = new JPanel();
 
-        controllerButtons = new MovingButtonsController();
+        //TODO Bouger instanciation controleur
+        controllerButtons = new MovingButtonsController(this);
         controlPanel = new ControlPanel(controllerButtons);
 
         buttonPanel.add(controlPanel.getToolbar());
@@ -31,5 +32,13 @@ public class MainPanel extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
 
+    }
+
+    public JTextField getInputValue(){
+        return this.controlPanel.getInputValue();
+    }
+
+    public GraphPanel getGraphPanel(){
+        return graphPanel;
     }
 }

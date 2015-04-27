@@ -69,4 +69,8 @@ public class ControlPanel extends JPanel {
     public JToolBar getToolbar(){
         return this.toolBar;
     }
+
+    public JTextField getInputValue(){
+        return inputValue;
+    }
 }
