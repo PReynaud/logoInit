@@ -2,8 +2,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Created by Pierre on 22/04/2015.
@@ -14,11 +12,9 @@ public class ControlPanel extends JPanel {
     private JTextField inputValue;
 
     private JToolBar toolBar;
-    private ActionListener controller;
 
-    public ControlPanel(ActionListener controller){
+    public ControlPanel(){
         this.toolBar = new JToolBar();
-        this.controller = controller;
 
         addButton(toolBar,"Effacer","Nouveau dessin","/icons/index.png");
 
@@ -63,7 +59,6 @@ public class ControlPanel extends JPanel {
         b.setToolTipText(tooltiptext);
         b.setBorder(BorderFactory.createRaisedBevelBorder());
         b.setMargin(new Insets(0,0,0,0));
-        b.addActionListener(controller);
     }
 
     public JToolBar getToolbar(){

@@ -32,8 +32,9 @@ public class GraphPanel extends JPanel {
 
     private TurtleList tortues; // la liste des tortues enregistrees
 
-    public GraphPanel() {
-        tortues = new TurtleList();
+    public GraphPanel(TurtleList turtles) {
+        super();
+        tortues = turtles;
     }
 
     public void addTortue(Turtle o) {

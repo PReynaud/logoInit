@@ -1,6 +1,7 @@
 package view;
 
 import controller.MovingButtonsController;
+import model.TurtleList;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;
@@ -15,17 +16,13 @@ public class MainPanel extends JFrame implements Observer {
     private ControlPanel controlPanel;
     private GraphPanel graphPanel;
 
-    private ActionListener controllerButtons;
-
-    public MainPanel(){
+    public MainPanel(TurtleList turtles){
         super("Un super logo");
 
+        controlPanel = new ControlPanel();
+        graphPanel = new GraphPanel(turtles);
+
         JPanel buttonPanel = new JPanel();
-
-        //TODO Bouger instanciation controleur
-        controllerButtons = new MovingButtonsController(this);
-        controlPanel = new ControlPanel(controllerButtons);
-
         buttonPanel.add(controlPanel.getToolbar());
     }
 
