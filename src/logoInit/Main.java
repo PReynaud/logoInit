@@ -14,7 +14,6 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 TurtleList turtles = new TurtleList();
-                turtles.addTurtle();
 
                 MainPanel mainPanel = new MainPanel();
                 MovingButtonsController buttonsController = new MovingButtonsController(mainPanel, turtles);

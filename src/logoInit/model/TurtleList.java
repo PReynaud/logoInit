@@ -13,16 +13,17 @@ public class TurtleList extends Observable{
 
     public TurtleList() {
         this.turtles = new ArrayList<Turtle>();
-        addTurtle();
+        addTurtle(0);
     }
 
     public void addTortue(Turtle o) {
         this.turtles.add(o);
     }
 
-    public void addTurtle(){
+    public void addTurtle(int color){
         Turtle tempTurtle = new Turtle();
         tempTurtle.setPosition(500/2, 400/2);
+        tempTurtle.setColor(color);
         this.turtles.add(tempTurtle);
     }
 

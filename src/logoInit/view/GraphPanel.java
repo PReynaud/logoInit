@@ -51,7 +51,7 @@ public class GraphPanel extends JPanel {
     }
 
     public void showTurtles(Graphics g) {
-        for(Iterator it = tortues.getTurtles().iterator();it.hasNext();) {
+        for(Iterator it = tortues.getTurtles().iterator(); it.hasNext();) {
             Turtle t = (Turtle) it.next();
             drawTurtle(g, t);
         }
@@ -87,7 +87,7 @@ public class GraphPanel extends JPanel {
                 (int) Math.round( p2.y+r*Math.sin(theta - alpha) ));
 
         arrow.addPoint(p2.x,p2.y);
-        graph.setColor(Color.green);
+        graph.setColor(turtle.decodeColor(turtle.getColor()));
         graph.fillPolygon(arrow);
     }
 

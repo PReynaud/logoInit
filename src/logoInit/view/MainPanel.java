@@ -67,4 +67,8 @@ public class MainPanel extends JFrame implements Observer {
 
         pack();
     }
+
+    public int getCurrentColor(){
+        return controlPanel.getCurrentColor();
+    }
 }
