@@ -169,6 +169,13 @@ public class Turtle{
         couleur(coul + 1);
     }
 
+    public double getTurtleRadius(){
+        return Math.sqrt( RP*RP + RB *RB);
+    }
+
+    public boolean isInTurtleRadius (Point point){
+        return getTurtleRadius()- Math.sqrt(Math.pow(x-point.x,2)+Math.pow(y-point.y,2))>=0;
+    }
 
     /**************************************/
     /*******  Fonctions de formes  ********/

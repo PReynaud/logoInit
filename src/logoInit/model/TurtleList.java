@@ -13,9 +13,7 @@ public class TurtleList extends Observable{
 
     public TurtleList() {
         this.turtles = new ArrayList<Turtle>();
-        Turtle oneTurtle = new Turtle();
-        oneTurtle.setPosition(500/2, 400/2);
-        this.turtles.add(oneTurtle);
+        addTurtle();
     }
 
     public void addTortue(Turtle o) {
@@ -41,5 +39,9 @@ public class TurtleList extends Observable{
 
     public ArrayList<Turtle> getTurtles (){
         return turtles;
+    }
+
+    public void setCurrent(int i) {
+        indexCurrentTurtle=i;
     }
 }

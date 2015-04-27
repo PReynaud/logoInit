@@ -1,4 +1,6 @@
+import controller.MouseController;
 import controller.MovingButtonsController;
+import model.Turtle;
 import model.TurtleList;
 import view.MainPanel;
 
@@ -12,12 +14,14 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 TurtleList turtles = new TurtleList();
+                turtles.addTurtle();
 
-                MainPanel mainPanel = new MainPanel(turtles);
+                MainPanel mainPanel = new MainPanel();
                 MovingButtonsController buttonsController = new MovingButtonsController(mainPanel, turtles);
+                MouseController mouseController = new MouseController(mainPanel,turtles);
                 //Crée les boutons et les associe au controleur
                 mainPanel.addButtons(buttonsController);
-
+                mainPanel.addTurtles (turtles, mouseController);
                 turtles.addObserver(mainPanel);
                 mainPanel.setVisible(true);
             }
