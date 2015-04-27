@@ -1,5 +1,6 @@
 package view;
 
+import controller.MouseController;
 import controller.MovingButtonsController;
 import model.TurtleList;
 
@@ -19,13 +20,11 @@ public class MainPanel extends JFrame implements Observer {
     private ControlPanel controlPanel;
     private GraphPanel graphPanel;
 
-    public MainPanel(TurtleList turtles){
+
+    public MainPanel(){
         super("Un super logo");
 
         getContentPane().setLayout(new BorderLayout(10, 10));
-        graphPanel = new GraphPanel(turtles, new Dimension(600,400));
-        getContentPane().add(graphPanel, "Center");
-        graphPanel.setVisible(true);
         setVisible(true);
 
         addWindowListener(new WindowAdapter() {
@@ -58,6 +57,15 @@ public class MainPanel extends JFrame implements Observer {
 
     public GraphPanel getGraphPanel(){
         return graphPanel;
+    }
+
+    public void addTurtles(TurtleList turtles, MouseController controller) {
+        graphPanel = new GraphPanel(turtles, new Dimension(600,400));
+        graphPanel.addMouseListener(controller);
+        getContentPane().add(graphPanel, "Center");
+        graphPanel.setVisible(true);
+
+        pack();
     }
 
     public int getCurrentColor(){
