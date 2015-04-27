@@ -30,7 +30,7 @@ public class MovingButtonsController implements ActionListener {
             System.out.println("command avancer");
             try {
                 int v = Integer.parseInt(view.getInputValue().getText());
-                turtles.getCurrentTurtle().avancer(v);
+                turtles.goUp(v);
             } catch (NumberFormatException ex){
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
@@ -39,7 +39,7 @@ public class MovingButtonsController implements ActionListener {
         else if (c.equals("Droite")) {
             try {
                 int v = Integer.parseInt(view.getInputValue().getText());
-                turtles.getCurrentTurtle().droite(v);
+                turtles.goRight(v);
             } catch (NumberFormatException ex){
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
@@ -47,7 +47,7 @@ public class MovingButtonsController implements ActionListener {
         else if (c.equals("Gauche")) {
             try {
                 int v = Integer.parseInt(view.getInputValue().getText());
-                turtles.getCurrentTurtle().gauche(v);
+                turtles.goLeft(v);
             } catch (NumberFormatException ex){
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
@@ -62,7 +62,5 @@ public class MovingButtonsController implements ActionListener {
                 turtles.addTurtle(color, name);
             }
         }
-
-        view.getGraphPanel().repaint();
     }
 }

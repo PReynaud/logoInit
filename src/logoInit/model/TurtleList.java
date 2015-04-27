@@ -16,7 +16,7 @@ public class TurtleList extends Observable{
         addTurtle(0);
     }
 
-    public void addTortue(Turtle o) {
+    public void addTortle(Turtle o) {
         this.turtles.add(o);
     }
 
@@ -25,6 +25,7 @@ public class TurtleList extends Observable{
         tempTurtle.setPosition(500/2, 400/2);
         tempTurtle.setColor(color);
         this.turtles.add(tempTurtle);
+        updateObservers();
     }
 
     public void addTurtle(int color, String name){
@@ -33,6 +34,7 @@ public class TurtleList extends Observable{
         tempTurtle.setColor(color);
         tempTurtle.setName(name);
         this.turtles.add(tempTurtle);
+        updateObservers();
     }
 
     public void reset() {
@@ -40,6 +42,7 @@ public class TurtleList extends Observable{
             Turtle t = (Turtle) it.next();
             t.reset();
         }
+        updateObservers();
     }
 
     public Turtle getCurrentTurtle(){
@@ -52,5 +55,25 @@ public class TurtleList extends Observable{
 
     public void setCurrent(int i) {
         indexCurrentTurtle=i;
+    }
+
+    private void updateObservers() {
+        setChanged();
+        notifyObservers();
+    }
+
+    public void goLeft (int value){
+        getCurrentTurtle().gauche(value);
+        updateObservers();
+    }
+
+    public void goRight (int value){
+        getCurrentTurtle().droite(value);
+        updateObservers();
+    }
+
+    public void goUp(int value) {
+        getCurrentTurtle().avancer(value);
+        updateObservers();
     }
 }

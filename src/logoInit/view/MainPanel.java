@@ -48,7 +48,7 @@ public class MainPanel extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        getGraphPanel().repaint();
     }
 
     public JTextField getInputValue(){
