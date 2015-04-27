@@ -32,9 +32,12 @@ public class GraphPanel extends JPanel {
 
     private TurtleList tortues; // la liste des tortues enregistrees
 
-    public GraphPanel(TurtleList turtles) {
+    public GraphPanel(TurtleList turtles, Dimension dimension) {
         super();
         tortues = turtles;
+        this.setBackground(Color.white);
+        this.setSize(dimension);
+        this.setPreferredSize(dimension);
     }
 
     public void addTortue(Turtle o) {

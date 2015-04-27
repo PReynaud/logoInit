@@ -4,6 +4,7 @@ import controller.MovingButtonsController;
 import model.TurtleList;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,7 +21,7 @@ public class MainPanel extends JFrame implements Observer {
         super("Un super logo");
 
         controlPanel = new ControlPanel();
-        graphPanel = new GraphPanel(turtles);
+        graphPanel = new GraphPanel(turtles, new Dimension(600,400));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(controlPanel.getToolbar());
