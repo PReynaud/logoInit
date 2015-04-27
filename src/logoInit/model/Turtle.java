@@ -12,8 +12,8 @@ public class Turtle extends Observable {
     /**************************************/
     /**********  Attributs  ***************/
     /**************************************/
-    protected static final int rp=10, rb=5; // Taille de la pointe et de la base de la fleche
-    protected static final double ratioDegRad = 0.0174533; // Rapport radians/degres (pour la conversion)
+    public static final int RP =10, RB =5; // Taille de la pointe et de la base de la fleche
+    public static final double RATIO_DEG_RAD = 0.0174533; // Rapport radians/degres (pour la conversion)
 
     protected ArrayList<Segment> listSegments; // Trace de la tortue
 
@@ -27,7 +27,24 @@ public class Turtle extends Observable {
     /**********  Methodes  ****************/
     /**************************************/
     public void setColor(int n) {coul = n;}
+
     public int getColor() {return coul;}
+
+    public ArrayList<Segment> getListSegments() {
+        return listSegments;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getDir() {
+        return dir;
+    }
 
     public Turtle() { // FeuilleDessin f) {
         // feuille = f;
@@ -59,11 +76,11 @@ public class Turtle extends Observable {
 
         //Calcule des deux bases
         //Angle de la droite
-        double theta=ratioDegRad*(-dir);
+        double theta= RATIO_DEG_RAD *(-dir);
         //Demi angle au sommet du triangle
-        double alpha=Math.atan( (float)rb / (float)rp );
+        double alpha=Math.atan( (float) RB / (float) RP);
         //Rayon de la fleche
-        double r=Math.sqrt( rp*rp + rb*rb );
+        double r=Math.sqrt( RP * RP + RB * RB);
         //Sens de la fleche
 
         //Pointe
@@ -104,8 +121,8 @@ public class Turtle extends Observable {
 
     // avancer de n pas
     public void avancer(int dist) {
-        int newX = (int) Math.round(x+dist*Math.cos(ratioDegRad*dir));
-        int newY = (int) Math.round(y+dist*Math.sin(ratioDegRad*dir));
+        int newX = (int) Math.round(x+dist*Math.cos(RATIO_DEG_RAD *dir));
+        int newY = (int) Math.round(y+dist*Math.sin(RATIO_DEG_RAD *dir));
 
         if (crayon==true) {
             Segment seg = new Segment();
