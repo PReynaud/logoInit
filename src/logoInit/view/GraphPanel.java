@@ -1,5 +1,6 @@
 package view;
 
+import model.ImprovedTurtle;
 import model.Turtle;
 import model.TurtleList;
 
@@ -83,12 +84,15 @@ public class GraphPanel extends JPanel {
                 (int) Math.round( p2.y+r*Math.sin(theta + alpha) ));
 
         //Base2
-        arrow.addPoint((int) Math.round( p2.x-r*Math.cos(theta - alpha) ),
-                (int) Math.round( p2.y+r*Math.sin(theta - alpha) ));
+        arrow.addPoint((int) Math.round(p2.x - r * Math.cos(theta - alpha)),
+                (int) Math.round(p2.y + r * Math.sin(theta - alpha)));
 
-        arrow.addPoint(p2.x,p2.y);
+        arrow.addPoint(p2.x, p2.y);
         graph.setColor(turtle.decodeColor(turtle.getColor()));
         graph.fillPolygon(arrow);
+        if(turtle instanceof ImprovedTurtle){
+            graph.drawString(((ImprovedTurtle) turtle).getName(), turtle.getX() + 20, turtle.getY());
+        }
     }
 
     @Override
