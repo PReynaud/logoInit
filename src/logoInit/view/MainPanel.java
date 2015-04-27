@@ -59,6 +59,10 @@ public class MainPanel extends JFrame implements Observer {
         return graphPanel;
     }
 
+    public ControlPanel getControlPanel(){
+        return controlPanel;
+    }
+
     public void addTurtles(TurtleList turtles, MouseController controller) {
         graphPanel = new GraphPanel(turtles, new Dimension(600,400));
         graphPanel.addMouseListener(controller);

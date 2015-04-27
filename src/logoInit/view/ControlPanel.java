@@ -14,6 +14,7 @@ public class ControlPanel extends JPanel {
     public static final Dimension VGAP = new Dimension(1,5);
     public static final Dimension HGAP = new Dimension(5,1);
     private JTextField inputValue;
+    private JTextField inputName;
     private int currentColor;
 
     private JToolBar toolBar;
@@ -29,6 +30,10 @@ public class ControlPanel extends JPanel {
         addButton(toolBar, "Avancer", "Avancer 50", null, controller);
         addButton(toolBar, "Droite", "Droite 45", null, controller);
         addButton(toolBar, "Gauche", "Gauche 45", null, controller);
+
+
+        inputName = new JTextField("",5);
+        toolBar.add(inputName);
         addButton(toolBar, "Ajouter", "Ajouter tortue", null, controller);
 
         String[] colorStrings = {"noir", "bleu", "cyan","gris fonce","rouge",
@@ -48,6 +53,8 @@ public class ControlPanel extends JPanel {
                 currentColor = cb.getSelectedIndex();
             }
         });
+
+
     }
 
     //utilitaires pour installer des boutons et des menus
@@ -79,6 +86,10 @@ public class ControlPanel extends JPanel {
 
     public JTextField getInputValue(){
         return inputValue;
+    }
+
+    public JTextField getInputName(){
+        return inputName;
     }
 
     public int getCurrentColor(){

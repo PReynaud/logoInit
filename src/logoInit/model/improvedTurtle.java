@@ -25,6 +25,10 @@ public class ImprovedTurtle extends Turtle {
         return name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public void addKnownTurtle(ImprovedTurtle t){
         knownTurtles.add(t);
     }
@@ -44,7 +48,12 @@ public class ImprovedTurtle extends Turtle {
         for(ImprovedTurtle oneTurtle: knownTurtles){
             double distanceBetweenTurtles = calculDistanceBetweenTurtles(oneTurtle);
             if(distanceBetweenTurtles <= 15){
-                System.out.println("Hey " + oneTurtle.getName());
+                if (oneTurtle instanceof Turtle){
+                    System.out.println("Hey mysterious turtle");
+                }
+                else{
+                    System.out.println("Hey " + oneTurtle.getName());
+                }
                 System.out.println("MOVE!!");
                 oneTurtle.avancer(15);
             }
