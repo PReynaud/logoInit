@@ -2,7 +2,6 @@ package model;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Observable;
 
 /**
  * Created by Pierre on 22/04/2015.
@@ -68,35 +67,6 @@ public class Turtle{
         y = newY;
     }
 
-    public void calculNewPosition(){
-        //Calcule les 3 coins du triangle a partir de
-        // la position de la tortue p
-        Point p = new Point(x,y);
-        Polygon arrow = new Polygon();
-
-        //Calcule des deux bases
-        //Angle de la droite
-        double theta= RATIO_DEG_RAD *(-dir);
-        //Demi angle au sommet du triangle
-        double alpha=Math.atan( (float) RB / (float) RP);
-        //Rayon de la fleche
-        double r=Math.sqrt( RP * RP + RB * RB);
-        //Sens de la fleche
-
-        //Pointe
-        Point p2=new Point((int) Math.round(p.x+r*Math.cos(theta)),
-                (int) Math.round(p.y-r*Math.sin(theta)));
-        arrow.addPoint(p2.x,p2.y);
-        arrow.addPoint((int) Math.round( p2.x-r*Math.cos(theta + alpha) ),
-                (int) Math.round( p2.y+r*Math.sin(theta + alpha) ));
-
-        //Base2
-        arrow.addPoint((int) Math.round( p2.x-r*Math.cos(theta - alpha) ),
-                (int) Math.round( p2.y+r*Math.sin(theta - alpha) ));
-
-        arrow.addPoint(p2.x,p2.y);
-    }
-
     public Color decodeColor(int c) {
         switch(c) {
             case 0: return(Color.black);
@@ -150,16 +120,6 @@ public class Turtle{
         dir = (dir - ang) % 360;
     }
 
-    // baisser le crayon pour dessiner
-    public void baisserCrayon() {
-        crayon = true;
-    }
-
-    // lever le crayon pour ne plus dessiner
-    public void leverCrayon() {
-        crayon = false;
-    }
-
     // pour changer de couleur de dessin
     public void couleur(int n) {
         coul = n % 12;
@@ -175,32 +135,5 @@ public class Turtle{
 
     public boolean isInTurtleRadius (Point point){
         return getTurtleRadius()- Math.sqrt(Math.pow(x-point.x,2)+Math.pow(y-point.y,2))>=0;
-    }
-
-    /**************************************/
-    /*******  Fonctions de formes  ********/
-    /**************************************/
-
-    public void carre() {
-        for (int i=0;i<4;i++) {
-            avancer(100);
-            droite(90);
-        }
-    }
-
-    public void poly(int n, int a) {
-        for (int j=0;j<a;j++) {
-            avancer(n);
-            droite(360/a);
-        }
-    }
-
-    public void spiral(int n, int k, int a) {
-        for (int i = 0; i < k; i++) {
-            couleur(coul+1);
-            avancer(n);
-            droite(360/a);
-            n = n+1;
-        }
     }
 }

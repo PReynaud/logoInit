@@ -1,44 +1,56 @@
 package view;
 
+import model.BallTurtle;
+import model.Turtle;
 import model.TurtleList;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created by Pierre on 22/04/2015.
  */
 public class GraphPanel extends JPanel {
-    private Graphics graph;
-    private TurtleView turtleView;
+    private ArrayList<TurtleView> turtlesList;
 
     public GraphPanel(TurtleList turtles, Dimension dimension) {
         super();
-        this.turtleView = new TurtleView(turtles);
         this.setBackground(Color.white);
         this.setSize(dimension);
         this.setPreferredSize(dimension);
-        this.turtleView.drawTurtle(graph, turtles.getCurrentTurtle());
+        updateTurtles(turtles.getTurtles());
     }
 
     public void reset() {
-       this.turtleView.reset();
+       //TODO
+        //this.turtleView.reset();
     }
 
-
+    public void updateTurtles (ArrayList<Turtle> turtles){
+        this.turtlesList =new ArrayList<TurtleView>();
+        for(Turtle turtle: turtles){
+            if(turtle instanceof BallTurtle){
+                TurtleView temp = new BallTurtleView(turtle);
+                turtlesList.add(temp);
+            }
+            else{
+                TurtleView temp = new TurtleView(turtle);
+                turtlesList.add(temp);
+            }
+        }
+    }
 
     @Override
     public void paintComponent(Graphics g) {
+        Dimension dim = getSize();
+        g.fillRect(0, 0, dim.width, dim.height);
+        g.setColor(Color.white);
         super.paintComponent(g);
 
-        Color c = g.getColor();
-
-        Dimension dim = getSize();
-        g.setColor(Color.white);
-        g.fillRect(0,0,dim.width, dim.height);
-        g.setColor(c);
-
-        this.turtleView.showTurtles(g);
+        for(TurtleView tView: this.turtlesList){
+            tView.drawTurtle(g);
+        }
     }
 
 

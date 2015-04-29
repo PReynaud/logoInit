@@ -10,15 +10,15 @@ import java.awt.*;
  */
 public class BallTurtleView extends TurtleView{
 
-    public BallTurtleView(TurtleList turtles) {
-        super(turtles);
+    public BallTurtleView(Turtle turtle) {
+        super(turtle);
     }
 
     @Override
-    public void drawTurtle (Graphics graph, Turtle turtle) {
+    public void drawTurtle (Graphics graph) {
         if (graph==null)
             return;
 
-        new DiskView().drawPolygon(graph,turtle);
+        new DiskView().drawPolygon(graph, super.turtle);
     }
 }

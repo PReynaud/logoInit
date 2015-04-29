@@ -1,5 +1,6 @@
 package view;
 
+import model.ImprovedTurtle;
 import model.Turtle;
 
 import java.awt.*;
@@ -7,7 +8,7 @@ import java.awt.*;
 /**
  * Created by Dimitri on 27/04/2015.
  */
-public class ArrowView extends PolygonView {
+public class ArrowView implements PolygonView {
     @Override
     public void drawPolygon (Graphics graphics,Turtle turtle) {
         Polygon polygon = new Polygon();
@@ -38,6 +39,9 @@ public class ArrowView extends PolygonView {
         polygon.addPoint(p2.x, p2.y);
         graphics.setColor(turtle.decodeColor(turtle.getColor()));
         graphics.fillPolygon(polygon);
-        super.drawPolygon(graphics, turtle);
+
+        if(turtle instanceof ImprovedTurtle){
+            graphics.drawString(((ImprovedTurtle) turtle).getName(), turtle.getX() + 20, turtle.getY());
+        }
     }
 }
