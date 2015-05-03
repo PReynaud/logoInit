@@ -11,32 +11,32 @@ import java.awt.event.ActionListener;
  * Created by Pierre on 22/04/2015.
  */
 public class ControlPanel extends JPanel {
-    public static final Dimension VGAP = new Dimension(1,5);
-    public static final Dimension HGAP = new Dimension(5,1);
+    public static final Dimension VGAP = new Dimension(1, 5);
+    public static final Dimension HGAP = new Dimension(5, 1);
     private JTextField inputValue;
     private JTextField inputName;
     private int currentColor;
 
     private JToolBar toolBar;
 
-    public ControlPanel(MovingButtonsController controller){
+    public ControlPanel(MovingButtonsController controller) {
         this.toolBar = new JToolBar();
 
         addButton(toolBar, "Effacer", "Nouveau dessin", "/icons/index.png", controller);
 
         toolBar.add(Box.createRigidArea(HGAP));
-        inputValue = new JTextField("45",5);
+        inputValue = new JTextField("20", 5);
         toolBar.add(inputValue);
-        addButton(toolBar, "Avancer", "Avancer 50", null, controller);
+        addButton(toolBar, "Avancer", "Avancer 20", null, controller);
         addButton(toolBar, "Droite", "Droite 45", null, controller);
         addButton(toolBar, "Gauche", "Gauche 45", null, controller);
 
 
-        inputName = new JTextField("",5);
+        inputName = new JTextField("", 5);
         toolBar.add(inputName);
         addButton(toolBar, "Ajouter", "Ajouter tortue", null, controller);
 
-        String[] colorStrings = {"noir", "bleu", "cyan","gris fonce","rouge",
+        String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce", "rouge",
                 "vert", "gris clair", "magenta", "orange",
                 "gris", "rose", "jaune"};
 
@@ -61,15 +61,13 @@ public class ControlPanel extends JPanel {
     public void addButton(JComponent p, String name, String tooltiptext, String imageName, MovingButtonsController controller) {
         JButton b;
         if ((imageName == null) || (imageName.equals(""))) {
-            b = (JButton)p.add(new JButton(name));
-        }
-        else {
+            b = (JButton) p.add(new JButton(name));
+        } else {
             java.net.URL u = this.getClass().getResource(imageName);
             if (u != null) {
-                ImageIcon im = new ImageIcon (u);
+                ImageIcon im = new ImageIcon(u);
                 b = (JButton) p.add(new JButton(im));
-            }
-            else
+            } else
                 b = (JButton) p.add(new JButton(name));
             b.setActionCommand(name);
         }
@@ -80,19 +78,19 @@ public class ControlPanel extends JPanel {
         b.addActionListener(controller);
     }
 
-    public JToolBar getToolbar(){
+    public JToolBar getToolbar() {
         return this.toolBar;
     }
 
-    public JTextField getInputValue(){
+    public JTextField getInputValue() {
         return inputValue;
     }
 
-    public JTextField getInputName(){
+    public JTextField getInputName() {
         return inputName;
     }
 
-    public int getCurrentColor(){
+    public int getCurrentColor() {
         return currentColor;
     }
 }

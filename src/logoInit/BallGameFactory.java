@@ -1,11 +1,9 @@
 import controller.MouseController;
 import controller.MovingButtonsController;
 import controller.TimeController;
-import model.Turtle;
 import model.TurtleList;
 import view.MainPanel;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.EventListener;
 
@@ -38,19 +36,21 @@ public class BallGameFactory implements Factory {
 
     @Override
     public TurtleList buildPlayers(TurtleList turtles) {
-        turtles.addTurtle(0,"Leonardo");
-        turtles.addTurtle(1,"Donatello");
-        turtles.addTurtle(2,"Michelangelo");
-        turtles.addTurtle(3,"Raphael");
-        turtles.addTurtle(4,"Splinter");
-        turtles.addTurtle(5,"April O'Neil");
-        turtles.addTurtle(6,"Casey Jones");
-        turtles.addTurtle(7,"Shredder");
-        turtles.addTurtle(8,"Krang");
-        turtles.addTurtle(9,"Baxter Stockman");
-        turtles.addTurtle(10,"Hun");
-        turtles.addTurtle(11,"Bishop");
-        turtles.addTurtle(12,"Karai");
+        turtles.addTurtle(0, "Leonardo");
+        turtles.addTurtle(1, "Donatello");
+        turtles.addTurtle(2, "Michelangelo");
+        turtles.addTurtle(3, "Raphael");
+        turtles.addTurtle(4, "Splinter");
+        turtles.addTurtle(5, "April O'Neil");
+        turtles.addTurtle(9, "Casey Jones");
+        turtles.addTurtle(7, "Shredder");
+        turtles.addTurtle(8, "Krang");
+        turtles.addTurtle(12, "Baxter Stockman");
+        turtles.addTurtle(10, "Hun");
+        turtles.addTurtle(11, "Bishop");
+        int index= (int)(Math.random()*turtles.getTurtles().size());
+        turtles.addBallTurtle(6, turtles.getTurtles().get(index));
+
         return turtles;
     }
 }

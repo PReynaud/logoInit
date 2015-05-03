@@ -13,11 +13,11 @@ public class TimeController {
     private MainPanel view;
     private Timer timer;
 
-    public TimeController(TurtleList turtles, MainPanel panel){
+    public TimeController(TurtleList turtles, MainPanel panel) {
         super();
         this.turtles = turtles;
         this.view = panel;
         this.timer = new Timer();
-        this.timer.scheduleAtFixedRate(new MoveTask(turtles,panel),1000,100);
+        this.timer.scheduleAtFixedRate(new MoveTask(turtles, panel), 1000, 400);
     }
 }

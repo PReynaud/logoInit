@@ -10,7 +10,7 @@ public class Segment {
     public Color color;
 
     public Segment() {
-        ptStart = new Point(0,0);
-        ptEnd = new Point(0,0);
+        ptStart = new Point(0, 0);
+        ptEnd = new Point(0, 0);
     }
 }

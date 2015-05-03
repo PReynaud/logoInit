@@ -6,7 +6,6 @@ import model.TurtleList;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Observable;
@@ -21,7 +20,7 @@ public class MainPanel extends JFrame implements Observer {
     private GraphPanel graphPanel;
 
 
-    public MainPanel(){
+    public MainPanel() {
         super("Un super logo");
 
         getContentPane().setLayout(new BorderLayout(10, 10));
@@ -36,7 +35,7 @@ public class MainPanel extends JFrame implements Observer {
         });
     }
 
-    public void addButtons(MovingButtonsController controller){
+    public void addButtons(MovingButtonsController controller) {
         JPanel buttonPanel = new JPanel();
         getContentPane().add(buttonPanel, "North");
         controlPanel = new ControlPanel(controller);
@@ -48,26 +47,26 @@ public class MainPanel extends JFrame implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        if (o instanceof TurtleList){
+        if (o instanceof TurtleList) {
             getGraphPanel().updateTurtles(((TurtleList) o).getTurtles());
         }
         getGraphPanel().repaint();
     }
 
-    public JTextField getInputValue(){
+    public JTextField getInputValue() {
         return this.controlPanel.getInputValue();
     }
 
-    public GraphPanel getGraphPanel(){
+    public GraphPanel getGraphPanel() {
         return graphPanel;
     }
 
-    public ControlPanel getControlPanel(){
+    public ControlPanel getControlPanel() {
         return controlPanel;
     }
 
     public void addTurtles(TurtleList turtles, MouseController controller) {
-        graphPanel = new GraphPanel(turtles, new Dimension(600,400));
+        graphPanel = new GraphPanel(turtles, new Dimension(600, 400));
         graphPanel.addMouseListener(controller);
         getContentPane().add(graphPanel, "Center");
         graphPanel.setVisible(true);
@@ -75,7 +74,7 @@ public class MainPanel extends JFrame implements Observer {
         pack();
     }
 
-    public int getCurrentColor(){
+    public int getCurrentColor() {
         return controlPanel.getCurrentColor();
     }
 }

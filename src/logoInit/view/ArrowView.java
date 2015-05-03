@@ -10,11 +10,11 @@ import java.awt.*;
  */
 public class ArrowView implements PolygonView {
     @Override
-    public void drawPolygon (Graphics graphics,Turtle turtle) {
+    public void drawPolygon(Graphics graphics, Turtle turtle) {
         Polygon polygon = new Polygon();
         //Calcule les 3 coins du triangle a partir de
         // la position de la tortue p
-        Point p = new Point(turtle.getX(),turtle.getY());
+        Point p = new Point(turtle.getX(), turtle.getY());
 
         //Calcule des deux bases
         //Angle de la droite
@@ -40,7 +40,7 @@ public class ArrowView implements PolygonView {
         graphics.setColor(turtle.decodeColor(turtle.getColor()));
         graphics.fillPolygon(polygon);
 
-        if(turtle instanceof ImprovedTurtle){
+        if (turtle instanceof ImprovedTurtle) {
             graphics.drawString(((ImprovedTurtle) turtle).getName(), turtle.getX() + 20, turtle.getY());
         }
     }

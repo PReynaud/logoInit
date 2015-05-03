@@ -1,6 +1,5 @@
 package controller;
 
-import model.Turtle;
 import model.TurtleList;
 import view.MainPanel;
 
@@ -15,7 +14,7 @@ public class MouseController implements MouseListener {
     private TurtleList turtles;
     private MainPanel view;
 
-    public MouseController(MainPanel view, TurtleList turtles){
+    public MouseController(MainPanel view, TurtleList turtles) {
         this.view = view;
         this.turtles = turtles;
     }
@@ -23,8 +22,8 @@ public class MouseController implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         Point point = e.getPoint();
-        for (int i=0; i<turtles.getTurtles().size();i++){
-            if (turtles.getTurtles().get(i).isInTurtleRadius(point)){
+        for (int i = 0; i < turtles.getTurtles().size(); i++) {
+            if (turtles.getTurtles().get(i).isInTurtleRadius(point)) {
                 turtles.setCurrent(i);
             }
         }

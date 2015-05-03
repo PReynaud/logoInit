@@ -13,7 +13,7 @@ public class MovingButtonsController implements ActionListener {
     private TurtleList turtles;
     private MainPanel view;
 
-    public MovingButtonsController(MainPanel view, TurtleList turtles){
+    public MovingButtonsController(MainPanel view, TurtleList turtles) {
         this.view = view;
         this.turtles = turtles;
     }
@@ -28,34 +28,30 @@ public class MovingButtonsController implements ActionListener {
             try {
                 int v = Integer.parseInt(view.getInputValue().getText());
                 turtles.goForward(v);
-            } catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
 
-        }
-        else if (c.equals("Droite")) {
+        } else if (c.equals("Droite")) {
             try {
                 int v = Integer.parseInt(view.getInputValue().getText());
                 turtles.goRight(v);
-            } catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
-        }
-        else if (c.equals("Gauche")) {
+        } else if (c.equals("Gauche")) {
             try {
                 int v = Integer.parseInt(view.getInputValue().getText());
                 turtles.goLeft(v);
-            } catch (NumberFormatException ex){
+            } catch (NumberFormatException ex) {
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
-        }
-        else if (c.equals("Ajouter")){
+        } else if (c.equals("Ajouter")) {
             String name = view.getControlPanel().getInputName().getText();
             int color = view.getCurrentColor();
-            if(name == ""){
+            if (name == "") {
                 turtles.addTurtle(color);
-            }
-            else{
+            } else {
                 turtles.addTurtle(color, name);
             }
         }

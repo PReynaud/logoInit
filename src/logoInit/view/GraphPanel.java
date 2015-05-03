@@ -23,18 +23,17 @@ public class GraphPanel extends JPanel {
     }
 
     public void reset() {
-       //TODO
+        //TODO
         //this.turtleView.reset();
     }
 
-    public void updateTurtles (ArrayList<Turtle> turtles){
-        this.turtlesList =new ArrayList<TurtleView>();
-        for(Turtle turtle: turtles){
-            if(turtle instanceof BallTurtle){
+    public void updateTurtles(ArrayList<Turtle> turtles) {
+        this.turtlesList = new ArrayList<TurtleView>();
+        for (Turtle turtle : turtles) {
+            if (turtle instanceof BallTurtle) {
                 TurtleView temp = new BallTurtleView(turtle);
                 turtlesList.add(temp);
-            }
-            else{
+            } else {
                 TurtleView temp = new TurtleView(turtle);
                 turtlesList.add(temp);
             }
@@ -48,7 +47,7 @@ public class GraphPanel extends JPanel {
         g.setColor(Color.white);
         super.paintComponent(g);
 
-        for(TurtleView tView: this.turtlesList){
+        for (TurtleView tView : this.turtlesList) {
             tView.drawTurtle(g);
         }
     }
