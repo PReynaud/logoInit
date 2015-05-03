@@ -1,8 +1,6 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Observable;
+import java.util.*;
 
 /**
  * Created by Pierre on 22/04/2015.
@@ -13,7 +11,6 @@ public class TurtleList extends Observable{
 
     public TurtleList() {
         this.turtles = new ArrayList<Turtle>();
-        addTurtle(0);
     }
 
     public void addTurtle(int color){
@@ -68,8 +65,21 @@ public class TurtleList extends Observable{
         updateObservers();
     }
 
-    public void goUp(int value) {
+    public void goForward(int value) {
         getCurrentTurtle().avancer(value);
         updateObservers();
+    }
+
+    public void moveRandom(int value){
+        for (Turtle turtle : turtles){
+            switch((int)Math.random()*4){
+                case(0):goLeft(value);
+                    break;
+                case (1):goRight(value);
+                    break;
+                default: goForward(value);
+                    break;
+            }
+        }
     }
 }

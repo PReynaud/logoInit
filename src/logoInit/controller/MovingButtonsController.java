@@ -1,11 +1,8 @@
 package controller;
 
-import model.Turtle;
 import model.TurtleList;
 import view.MainPanel;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +27,7 @@ public class MovingButtonsController implements ActionListener {
             System.out.println("command avancer");
             try {
                 int v = Integer.parseInt(view.getInputValue().getText());
-                turtles.goUp(v);
+                turtles.goForward(v);
             } catch (NumberFormatException ex){
                 System.err.println("ce n'est pas un nombre : " + view.getInputValue().getText());
             }
