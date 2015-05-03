@@ -13,12 +13,13 @@ public class BallTurtle extends Turtle {
     }
 
     public void updatePosition(){
-        int angle = owner.dir+90;
+        int angle = -owner.dir;
         if (angle>180){
             angle=-angle%180;
         }
         double cosX = Math.cos(Math.toRadians(angle)),
-                sinY = Math.sin(Math.toRadians(angle));
-        setPosition(owner.getX()+(int)(cosX*10), owner.getY()+ (int)(sinY*10));
+                sinY = Math.sin(Math.toRadians(angle)),
+                radius=15+owner.getTurtleRadius();
+        setPosition(owner.getX()+(int)(cosX*radius), owner.getY()- (int)(sinY*radius));
     }
 }
