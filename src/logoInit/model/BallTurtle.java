@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.*;
+
 /**
  * Created by Dimitri on 27/04/2015.
  */
@@ -21,5 +23,15 @@ public class BallTurtle extends Turtle {
                 sinY = Math.sin(Math.toRadians(angle)),
                 radius=15+owner.getTurtleRadius();
         setPosition(owner.getX()+(int)(cosX*radius), owner.getY()- (int)(sinY*radius));
+    }
+
+    public boolean makeAPass(Turtle turtle) {
+        if(turtle.calculDistanceBetweenTurtles(owner)<=50&&!turtle.equals(owner)){
+            owner = turtle;
+            updatePosition();
+            return true;
+        }
+        updatePosition();
+        return false;
     }
 }

@@ -30,32 +30,30 @@ public class ImprovedTurtle extends Turtle {
     }
 
     public void addKnownTurtle(ImprovedTurtle t) {
-        knownTurtles.add(t);
+        if (!equals(t))
+            knownTurtles.add(t);
     }
 
     public void removeKnownTurtle(ImprovedTurtle t) {
         knownTurtles.remove(t);
     }
 
-    public double calculDistanceBetweenTurtles(ImprovedTurtle t) {
-        double calc;
-        calc = Math.sqrt(Math.pow(this.x + t.getX(), 2) + Math.pow(this.y + t.getY(), 2));
-        return calc;
-    }
-
     public void avancer(int dist) {
         super.avancer(dist);
+    }
+
+    public void saySomething (){
         for (ImprovedTurtle oneTurtle : knownTurtles) {
             double distanceBetweenTurtles = calculDistanceBetweenTurtles(oneTurtle);
             if (distanceBetweenTurtles <= 15) {
-                if (oneTurtle instanceof Turtle) {
-                    System.out.println("Hey mysterious turtle");
-                } else {
-                    System.out.println("Hey " + oneTurtle.getName());
-                }
+                System.out.println("Hey " + oneTurtle.getName());
                 System.out.println("MOVE!!");
-                oneTurtle.avancer(15);
+                oneTurtle.avancer(20);
             }
         }
+    }
+
+    public boolean equals(ImprovedTurtle obj) {
+        return super.equals(obj) && name.equals(obj.getName());
     }
 }

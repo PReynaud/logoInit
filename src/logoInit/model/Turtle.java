@@ -170,4 +170,18 @@ public class Turtle {
     public boolean isInTurtleRadius(Point point) {
         return getTurtleRadius() - Math.sqrt(Math.pow(x - point.x, 2) + Math.pow(y - point.y, 2)) >= 0;
     }
+
+    public double calculDistanceBetweenTurtles(Turtle t) {
+        double calc;
+        calc = Math.sqrt(Math.pow(this.x - t.getX(), 2) + Math.pow(this.y - t.getY(), 2));
+        return calc;
+    }
+
+    public boolean isDrawing (){
+        return crayon;
+    }
+
+    public boolean equals(Turtle obj) {
+        return x==obj.getX() && y==obj.getY() && dir == obj.getDir() && crayon==obj.isDrawing() && coul==obj.getColor();
+    }
 }

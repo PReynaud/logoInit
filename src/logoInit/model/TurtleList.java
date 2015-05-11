@@ -62,17 +62,23 @@ public class TurtleList extends Observable {
 
     public void goLeft(int value) {
         getCurrentTurtle().gauche(value);
-        updateObservers();
     }
 
     public void goRight(int value) {
         getCurrentTurtle().droite(value);
-        updateObservers();
     }
 
     public void goForward(int value) {
         getCurrentTurtle().avancer(value);
-        updateObservers();
+    }
+
+    public void goForwardAndSaySomething(int value) {
+        Turtle turtle = getCurrentTurtle();
+        turtle.avancer(value);
+        if (getCurrentTurtle() instanceof ImprovedTurtle) {
+            ImprovedTurtle superTurtle = (ImprovedTurtle) turtle;
+            superTurtle.saySomething();
+        }
     }
 
     public void moveRandom(int value) {
@@ -92,13 +98,37 @@ public class TurtleList extends Observable {
             }
         }
         updateBallsPositions();
+        updateObservers();
+    }
+
+    public void tryToMakeAPass (BallTurtle ball){
+            for (Turtle turtle:turtles){
+                if (turtle instanceof ImprovedTurtle&&ball.makeAPass(turtle)){
+                    break;
+                }
+            }
     }
 
     public void updateBallsPositions(){
         for(Turtle turtle : turtles){
             if (turtle instanceof BallTurtle){
                 BallTurtle ball = (BallTurtle)turtle;
-                ball.updatePosition();
+                tryToMakeAPass(ball);
+            }
+        }
+    }
+
+    public void addKnownTurtles (ImprovedTurtle oneTurtle){
+        for (Turtle turtle : turtles){
+            if (turtle instanceof ImprovedTurtle)
+                oneTurtle.addKnownTurtle((ImprovedTurtle)turtle);
+        }
+    }
+
+    public void makeEveryOneKnown(){
+        for (Turtle turtle : turtles){
+            if (turtle instanceof  ImprovedTurtle){
+                addKnownTurtles((ImprovedTurtle) turtle);
             }
         }
     }

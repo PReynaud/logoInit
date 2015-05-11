@@ -48,6 +48,9 @@ public class BallGameFactory implements Factory {
         turtles.addTurtle(12, "Baxter Stockman");
         turtles.addTurtle(10, "Hun");
         turtles.addTurtle(11, "Bishop");
+
+        turtles.makeEveryOneKnown();
+
         int index= (int)(Math.random()*turtles.getTurtles().size());
         turtles.addBallTurtle(6, turtles.getTurtles().get(index));
 
