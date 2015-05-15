@@ -35,6 +35,7 @@ public class ControlPanel extends JPanel {
         inputName = new JTextField("", 5);
         toolBar.add(inputName);
         addButton(toolBar, "Ajouter", "Ajouter tortue", null, controller);
+        addButton(toolBar, "Demarrer", "Lancer le jeu", null, controller);
 
         String[] colorStrings = {"noir", "bleu", "cyan", "gris fonce", "rouge",
                 "vert", "gris clair", "magenta", "orange",

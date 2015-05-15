@@ -48,7 +48,7 @@ public class MainPanel extends JFrame implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (o instanceof TurtleList) {
-            getGraphPanel().updateTurtles(((TurtleList) o).getTurtles());
+            getGraphPanel().updateTurtles(((TurtleList) o));
         }
         getGraphPanel().repaint();
     }

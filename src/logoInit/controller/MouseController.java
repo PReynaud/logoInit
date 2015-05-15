@@ -12,10 +12,8 @@ import java.awt.event.MouseListener;
  */
 public class MouseController implements MouseListener {
     private TurtleList turtles;
-    private MainPanel view;
 
-    public MouseController(MainPanel view, TurtleList turtles) {
-        this.view = view;
+    public MouseController(TurtleList turtles) {
         this.turtles = turtles;
     }
 
@@ -24,7 +22,8 @@ public class MouseController implements MouseListener {
         Point point = e.getPoint();
         for (int i = 0; i < turtles.getTurtles().size(); i++) {
             if (turtles.getTurtles().get(i).isInTurtleRadius(point)) {
-                turtles.setCurrent(i);
+                turtles.setControlledTurtle(i);
+                break;
             }
         }
     }

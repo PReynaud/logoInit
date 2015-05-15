@@ -24,6 +24,7 @@ public class Turtle {
     protected int dir;    // Direction de la tortue (angle en degres)
     protected boolean crayon; // par defaut on suppose qu'on dessine
     protected int coul;
+    private boolean isControlled;
 
 
     /**************************************/
@@ -55,10 +56,19 @@ public class Turtle {
         return dir;
     }
 
+    public boolean isControlled() {
+        return isControlled;
+    }
+
+    public void setIsControlled(boolean isControlled) {
+        this.isControlled = isControlled;
+    }
+
     public Turtle() {
         this.x = (int)(Math.random()*MAX_X);
         this.y = (int)(Math.random()*MAX_Y);
         this.dir = -((int)(Math.random()*8))*45+180;
+        this.isControlled = false;
         listSegments = new ArrayList<Segment>();
     }
 
@@ -119,16 +129,17 @@ public class Turtle {
         int newX = (int) Math.round(x + dist * Math.cos(RATIO_DEG_RAD * dir));
         int newY = (int) Math.round(y + dist * Math.sin(RATIO_DEG_RAD * dir));
 
-        newX = Math.max(newX,0);
-        newY = Math.max(newY, 0);
-        newX = Math.min(newX, MAX_X);
-        newY = Math.min(newY,MAX_Y);
 
-        if (newX<=0 || newY<=0 || newX>=MAX_X || newY>=MAX_Y){
-            dir = -dir;
+        if (newX<=0){
+            newX = MAX_X+newX;
         }
+        if (newY<=0){
+            newY = MAX_Y+newY;
+        }
+        newX = newX%MAX_X;
+        newY = newY%MAX_Y;
 
-        if (crayon == true) {
+        if (crayon) {
             Segment seg = new Segment();
 
             seg.ptStart.x = x;
@@ -164,7 +175,7 @@ public class Turtle {
     }
 
     public double getTurtleRadius() {
-        return Math.sqrt(RP * RP + RB * RB);
+        return Math.sqrt((RP+2) * (RP+2) + (RB+2) * (RB+2));
     }
 
     public boolean isInTurtleRadius(Point point) {

@@ -9,10 +9,16 @@ import java.util.Observable;
  */
 public class TurtleList extends Observable {
     private ArrayList<Turtle> turtles; // la liste des turtles enregistrees
-    private int indexCurrentTurtle = 0;
+    private int indexControlledTurtle = 0;
 
     public TurtleList() {
         this.turtles = new ArrayList<Turtle>();
+    }
+
+    public void setControlledTurtle(int i) {
+        turtles.get(indexControlledTurtle).setIsControlled(false);
+        turtles.get(i).setIsControlled(true);
+        indexControlledTurtle = i;
     }
 
     public void addTurtle(int color) {
@@ -31,8 +37,10 @@ public class TurtleList extends Observable {
         updateObservers();
     }
 
-    public void addBallTurtle (int color, Turtle turtle){
-        turtles.add(new BallTurtle(turtle, color));
+    public BallTurtle addBallTurtle(int color, Turtle turtle) {
+        BallTurtle result = new BallTurtle(turtle, color);
+        turtles.add(result);
+        return result;
     }
 
     public void reset() {
@@ -43,16 +51,28 @@ public class TurtleList extends Observable {
         updateObservers();
     }
 
-    public Turtle getCurrentTurtle() {
-        return this.turtles.get(this.indexCurrentTurtle);
+    public ArrayList<BallTurtle> getBalls (){
+        ArrayList<BallTurtle> balls = new ArrayList<BallTurtle>();
+        for (Turtle turtle : turtles){
+            if (turtle instanceof BallTurtle){
+                balls.add((BallTurtle)turtle);
+            }
+        }
+        return balls;
+    }
+
+    public Turtle getControlledTurtle() {
+        return turtles.get(indexControlledTurtle);
     }
 
     public ArrayList<Turtle> getTurtles() {
-        return turtles;
-    }
-
-    public void setCurrent(int i) {
-        indexCurrentTurtle = i;
+        ArrayList<Turtle> result = new ArrayList<Turtle>();
+        for (Turtle turtle:turtles){
+            if (!(turtle instanceof BallTurtle)){
+                result.add(turtle);
+            }
+        }
+        return result;
     }
 
     private void updateObservers() {
@@ -60,74 +80,73 @@ public class TurtleList extends Observable {
         notifyObservers();
     }
 
-    public void goLeft(int value) {
-        getCurrentTurtle().gauche(value);
+    public void goLeft(Turtle turtle,int value) {
+        turtle.gauche(value);
     }
 
-    public void goRight(int value) {
-        getCurrentTurtle().droite(value);
+    public void goRight(Turtle turtle, int value) {
+        turtle.droite(value);
     }
 
-    public void goForward(int value) {
-        getCurrentTurtle().avancer(value);
-    }
-
-    public void goForwardAndSaySomething(int value) {
-        Turtle turtle = getCurrentTurtle();
+    public void goForward(Turtle turtle, int value) {
         turtle.avancer(value);
-        if (getCurrentTurtle() instanceof ImprovedTurtle) {
-            ImprovedTurtle superTurtle = (ImprovedTurtle) turtle;
-            superTurtle.saySomething();
-        }
+    }
+
+
+    public void saySomething(ImprovedTurtle turtle) {
+        turtle.saySomething();
     }
 
     public void moveRandom(int value) {
-        for (int i=0; i<turtles.size();i++) {
-            indexCurrentTurtle += 1;
-            indexCurrentTurtle =indexCurrentTurtle%turtles.size();
-            switch ((int) (Math.random() * 5)) {
-                case (0):
-                    goLeft(value);
-                    break;
-                case (1):
-                    goRight(value);
-                    break;
-                default:
-                    goForward(value);
-                    break;
+        for (Turtle turtle : getTurtles()){
+            if (!turtle.isControlled()) {
+                switch ((int) (Math.random() * 5)) {
+                    case (0):
+                        goLeft(turtle, value);
+                        break;
+                    case (1):
+                        goRight(turtle, value);
+                        break;
+                    default:
+                        goForward(turtle, value);
+                        break;
+                }
             }
         }
         updateBallsPositions();
         updateObservers();
     }
 
-    public void tryToMakeAPass (BallTurtle ball){
-            for (Turtle turtle:turtles){
-                if (turtle instanceof ImprovedTurtle&&ball.makeAPass(turtle)){
-                    break;
-                }
-            }
-    }
-
-    public void updateBallsPositions(){
-        for(Turtle turtle : turtles){
-            if (turtle instanceof BallTurtle){
-                BallTurtle ball = (BallTurtle)turtle;
-                tryToMakeAPass(ball);
-            }
+    public void moveControlledTurtle (int action, int value){
+        switch (action){
+            case 0:
+                goLeft(getControlledTurtle(), value);
+                break;
+            case 1:
+                goRight(getControlledTurtle(), value);
+                break;
+            default:
+                goForward(getControlledTurtle(),value);
+                break;
         }
     }
 
-    public void addKnownTurtles (ImprovedTurtle oneTurtle){
-        for (Turtle turtle : turtles){
+    public void updateBallsPositions() {
+        for (BallTurtle ball : getBalls()){
+            ball.updatePosition();
+        }
+    }
+
+    public void addKnownTurtles(ImprovedTurtle oneTurtle) {
+        for (Turtle turtle : turtles) {
             if (turtle instanceof ImprovedTurtle)
-                oneTurtle.addKnownTurtle((ImprovedTurtle)turtle);
+                oneTurtle.addKnownTurtle((ImprovedTurtle) turtle);
         }
     }
 
-    public void makeEveryOneKnown(){
-        for (Turtle turtle : turtles){
-            if (turtle instanceof  ImprovedTurtle){
+    public void makeEveryOneKnown() {
+        for (Turtle turtle : turtles) {
+            if (turtle instanceof ImprovedTurtle) {
                 addKnownTurtles((ImprovedTurtle) turtle);
             }
         }

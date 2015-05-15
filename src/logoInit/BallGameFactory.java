@@ -17,8 +17,8 @@ public class BallGameFactory implements Factory {
         TurtleList turtles = new TurtleList();
         ArrayList<EventListener> controllers = new ArrayList<EventListener>();
         controllers.add(new MovingButtonsController(mainPanel, turtles));
-        controllers.add(new MouseController(mainPanel, turtles));
-        new TimeController(turtles, mainPanel);
+        controllers.add(new MouseController(turtles));
+        new TimeController().scheduleMove(turtles, mainPanel);
 
         buildPlayers(turtles);
         buildPanels(controllers, mainPanel, turtles);
@@ -48,11 +48,7 @@ public class BallGameFactory implements Factory {
         turtles.addTurtle(12, "Baxter Stockman");
         turtles.addTurtle(10, "Hun");
         turtles.addTurtle(11, "Bishop");
-
         turtles.makeEveryOneKnown();
-
-        int index= (int)(Math.random()*turtles.getTurtles().size());
-        turtles.addBallTurtle(6, turtles.getTurtles().get(index));
 
         return turtles;
     }

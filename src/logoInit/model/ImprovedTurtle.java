@@ -25,6 +25,10 @@ public class ImprovedTurtle extends Turtle {
         return name;
     }
 
+    public ArrayList<ImprovedTurtle> getKnownTurtles() {
+        return knownTurtles;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

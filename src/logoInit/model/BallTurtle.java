@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.*;
 
 /**
  * Created by Dimitri on 27/04/2015.

@@ -19,7 +19,7 @@ public class GraphPanel extends JPanel {
         this.setBackground(Color.white);
         this.setSize(dimension);
         this.setPreferredSize(dimension);
-        updateTurtles(turtles.getTurtles());
+        updateTurtles(turtles);
     }
 
     public void reset() {
@@ -27,16 +27,15 @@ public class GraphPanel extends JPanel {
         //this.turtleView.reset();
     }
 
-    public void updateTurtles(ArrayList<Turtle> turtles) {
+    public void updateTurtles(TurtleList turtles) {
         this.turtlesList = new ArrayList<TurtleView>();
-        for (Turtle turtle : turtles) {
-            if (turtle instanceof BallTurtle) {
-                TurtleView temp = new BallTurtleView(turtle);
-                turtlesList.add(temp);
-            } else {
-                TurtleView temp = new TurtleView(turtle);
-                turtlesList.add(temp);
-            }
+        for (Turtle turtle : turtles.getTurtles()) {
+            TurtleView temp = new TurtleView(turtle);
+            turtlesList.add(temp);
+        }
+        for (BallTurtle ball:turtles.getBalls()){
+            BallTurtleView temp= new BallTurtleView(ball);
+            turtlesList.add(temp);
         }
     }
 
