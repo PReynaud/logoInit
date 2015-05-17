@@ -1,12 +1,10 @@
 package controller;
 
 import model.BallTurtle;
-import model.Turtle;
 import model.TurtleList;
 import view.MainPanel;
 
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,10 +15,12 @@ import java.awt.event.ActionListener;
 public class MovingButtonsController implements ActionListener {
     private TurtleList turtles;
     private MainPanel view;
+    private int passTempo;
 
-    public MovingButtonsController(MainPanel view, TurtleList turtles) {
+    public MovingButtonsController(MainPanel view, TurtleList turtles, int passTempo) {
         this.view = view;
         this.turtles = turtles;
+        this.passTempo = passTempo;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class MovingButtonsController implements ActionListener {
         }else if (c.equals("Demarrer")){
             int index= (int)(Math.random()*turtles.getTurtles().size());
             BallTurtle ball = turtles.addBallTurtle(6, turtles.getTurtles().get(index));
-            new TimeController().schedulePass(turtles,ball);
+            new TimeController().schedulePass(turtles,ball, passTempo);
             for(Component component: view.getControlPanel().getToolbar().getComponents()){
                 if (component instanceof JButton &&((JButton)component).getActionCommand().equals("Demarrer")) {
                     component.setEnabled(false);

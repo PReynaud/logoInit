@@ -11,20 +11,24 @@ import java.util.EventListener;
  * Created by Dimitri on 02/05/2015.
  */
 public class BallGameFactory implements Factory {
+
+    public static int REFRESH_TEMPO=400;
+    public static int PASS_TEMPO=2000;
+
     @Override
     public void buildGame() {
         MainPanel mainPanel = new MainPanel();
         TurtleList turtles = new TurtleList();
         ArrayList<EventListener> controllers = new ArrayList<EventListener>();
-        controllers.add(new MovingButtonsController(mainPanel, turtles));
+        controllers.add(new MovingButtonsController(mainPanel, turtles, PASS_TEMPO));
         controllers.add(new MouseController(turtles));
-        new TimeController().scheduleMove(turtles, mainPanel);
 
         buildPlayers(turtles);
         buildPanels(controllers, mainPanel, turtles);
 
         turtles.addObserver(mainPanel);
         mainPanel.setVisible(true);
+        new TimeController().scheduleMove(turtles, mainPanel, REFRESH_TEMPO);
     }
 
     @Override

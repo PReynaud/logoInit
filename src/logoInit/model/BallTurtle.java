@@ -25,7 +25,7 @@ public class BallTurtle extends Turtle {
     }
 
     public boolean makeAPass(Turtle turtle) {
-        if(turtle.calculDistanceBetweenTurtles(owner)<=50&&!turtle.equals(owner)){
+        if(turtle.calculDistanceBetweenTurtles(owner)<=80&&!turtle.equals(owner)){
             owner = turtle;
             updatePosition();
             return true;

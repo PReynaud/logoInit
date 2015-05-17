@@ -16,11 +16,11 @@ public class TimeController {
         this.timer=new Timer();
     }
 
-    public void scheduleMove (TurtleList turtles, MainPanel panel) {
-        this.timer.scheduleAtFixedRate(new MoveTask(turtles, panel), 1000, 400);
+    public void scheduleMove (TurtleList turtles, MainPanel panel, int tempo) {
+        this.timer.scheduleAtFixedRate(new MoveTask(turtles, panel), 1000, tempo);
     }
 
-    public void schedulePass (TurtleList turtles, BallTurtle ball) {
-        this.timer.scheduleAtFixedRate(new PassTask(turtles, ball), 1000, 1000);
+    public void schedulePass (TurtleList turtles, BallTurtle ball, int tempo) {
+        this.timer.scheduleAtFixedRate(new PassTask(turtles, ball), 1000, tempo);
     }
 }
