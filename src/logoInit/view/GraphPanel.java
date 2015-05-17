@@ -22,11 +22,6 @@ public class GraphPanel extends JPanel {
         updateTurtles(turtles);
     }
 
-    public void reset() {
-        //TODO
-        //this.turtleView.reset();
-    }
-
     public void updateTurtles(TurtleList turtles) {
         this.turtlesList = new ArrayList<TurtleView>();
         for (Turtle turtle : turtles.getTurtles()) {

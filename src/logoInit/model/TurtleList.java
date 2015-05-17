@@ -137,7 +137,7 @@ public class TurtleList extends Observable {
         }
     }
 
-    public void addKnownTurtles(ImprovedTurtle oneTurtle) {
+    public void addKnownTurtle(ImprovedTurtle oneTurtle) {
         for (Turtle turtle : turtles) {
             if (turtle instanceof ImprovedTurtle)
                 oneTurtle.addKnownTurtle((ImprovedTurtle) turtle);
@@ -147,7 +147,7 @@ public class TurtleList extends Observable {
     public void makeEveryOneKnown() {
         for (Turtle turtle : turtles) {
             if (turtle instanceof ImprovedTurtle) {
-                addKnownTurtles((ImprovedTurtle) turtle);
+                addKnownTurtle((ImprovedTurtle) turtle);
             }
         }
     }
